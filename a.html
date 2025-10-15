@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to bdaint.github.io!</title>
+</head>
+<body>
+    <p>
+
+        Task: 1 
+Revise programs on java: 
+i) . Java program to find factorial of given number 
+class Test { 
+static int factorial(int n) 
+{ 
+int res = 1, i; 
+for (i = 2; i <= n; i++) 
+res *= i; 
+return res; 
+} 
+public static void main(String[] args) 
+{ 
+int num = 5; 
+System.out.println("Factorial of " + num + " is " 
++ factorial(5)); 
+} 
+} 
+Output:  
+Factorial of 5 is 120 
+ii). Java Program to find even sum of fibonacci Series Till number N 
+import java.io.*; 
+class geeksforgeeks { 
+static int Fib_Even_Sum(int N) 
+{ if (N <= 0) 
+return 0; 
+int fib[] = new int[2 * N + 1]; 
+fib[0] = 0;
+
+f
+ ib[1] = 1; 
+int s = 0; 
+for (int j = 2; j <= 2 * N; j++) { 
+f
+ ib[j] = fib[j - 1] + fib[j - 2]; 
+if (j % 2 == 0) 
+s += fib[j]; 
+} return s; 
+} 
+public static void main(String[] args) 
+{ 
+int N = 11; 
+System.out.println( 
+"Even sum of fibonacci series till number " + N 
++ " is: " + +Fib_Even_Sum(N)); 
+} 
+} 
+Output: 
+Even sum of fibonacci series till number 11 is: 28656 
+iii). JAVA program to find Armstrong numbers between two integers 
+import java.io.*; 
+import java.math.*; 
+class gfg { 
+static void ArmstrongNum(int l, int h) 
+{ 
+for (int j = l + 1; j < h; ++j) { 
+int y = j; 
+int N = 0; 
+while (y != 0) { 
+y /= 10;
+
+++N; 
+} 
+int sum_power = 0; 
+y = j; 
+while (y != 0) { 
+int d = y % 10; 
+sum_power += Math.pow(d, N); 
+y /= 10; 
+} 
+if (sum_power == j) 
+System.out.print(j + " "); 
+} 
+} 
+public static void main(String args[]) 
+{ 
+int n1 = 50; 
+int n2 = 500; 
+ArmstrongNum(n1, n2); 
+System.out.println(); 
+} 
+}  
+Output: 
+153 370 371 407 
+iv. Java program to demonstrate working of method overloading in Java 
+public class Sum { 
+public int sum(int x, int y) { return (x + y); } 
+public int sum(int x, int y, int z) 
+{ 
+return (x + y + z);
+
+} 
+public double sum(double x, double y) 
+{ 
+return (x + y); 
+} 
+public static void main(String args[]) 
+{ 
+Sum s = new Sum(); 
+System.out.println(s.sum(10, 20)); 
+System.out.println(s.sum(10, 20, 30)); 
+System.out.println(s.sum(10.5, 20.5)); 
+} 
+}  
+Output: 
+30 
+60 
+31.0 
+Task: 2 
+Implement the following file management tasks in Hadoop: 
+a. Adding files and directories 
+b. Retrieving files 
+c. Deleting files 
+a. Adding files and directories: -adding file to Hadoop 
+[cloudera@quickstart ~]$ gedit sample 
+welcome 
+hadoop 
+[cloudera@quickstart ~]$ ls 
+cloudera-manager day6.txt Desktop Downloads enterprise-deployment.json kerberos Music  
+Pictures sample Videos
+
+cm_api.py day6.txt~ Documents eclipse express-deployment.json lib parcels  
+Public Templates workspace 
+[cloudera@quickstart ~]$ cat sample 
+welcome 
+hadoop 
+[cloudera@quickstart ~]$ pwd 
+/home/cloudera 
+[cloudera@quickstart ~]$ hdfs dfs -put /home/cloudera/sample / 
+[cloudera@quickstart ~]$ hdfs dfs -ls / 
+Found 7 items 
+drwxrwxrwx - hdfs supergroup 0 2017-07-19 05:34 /benchmarks 
+drwxr-xr-x - hbase supergroup 0 2025-06-21 02:01 /hbase -rw-r--r-- 1 cloudera supergroup 15 2025-06-21 02:05 /sample 
+drwxr-xr-x - solr solr 0 2017-07-19 05:37 /solr 
+drwxrwxrwt - hdfs supergroup 0 2025-06-12 23:18 /tmp 
+drwxr-xr-x - hdfs supergroup 0 2017-07-19 05:36 /user 
+drwxr-xr-x - hdfs supergroup 0 2017-07-19 05:36 /var 
+open browser and enter http://localhost:50070 
+Go to utilities → Browse the file system 
+adding Directory to Hadoop 
+[cloudera@quickstart ~]$ mkdir D1 
+[cloudera@quickstart ~]$ hdfs dfs -put /home/cloudera/D1 / 
+[cloudera@quickstart ~]$ hdfs dfs -ls / 
+Found 10 items 
+b. Retrieving files 
+[cloudera@quickstart ~]$ gedit sample1 
+hello CVR 
+[cloudera@quickstart ~]$ hdfs dfs -put /home/cloudera/sample1 /
+
+[cloudera@quickstart ~]$ hdfs dfs -ls / 
+Found 8 items 
+cloudera@quickstart ~]$ hdfs dfs -get /sample1 /home/cloudera 
+[cloudera@quickstart ~]$ ls 
+[cloudera@quickstart ~]$ cat sample1 
+hello CVR 
+c). Deleting files 
+[cloudera@quickstart ~]$ hdfs dfs -rm /sample1 
+Deleted /sample1 
+[cloudera@quickstart ~]$ hdfs dfs -ls / 
+Found 7 items 
+============================================================ 
+Task: 3) 3. Run a basic Word Count Map Reduce program to 
+understand Map Reduce Paradigm. 
+MapReduce: 
+Terminal 1 
+//Create input file and send it to Hadoop 
+[cloudera@quickstart ~]$ gedit s.txt 
+hadoop 
+big data 
+hadoop 
+[cloudera@quickstart ~]$ hdfs dfs -put /home/cloudera/s.txt / 
+[cloudera@quickstart ~]$ hdfs dfs -ls / 
+Found 8 items 
+Terminal 2 
+
+[cloudera@quickstart ~]$ gedit WordCount.java 
+
+import java.io.IOException;
+import java.util.StringTokenizer;
+ 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+ 
+public class WordCount {
+ 
+  public static class TokenizerMapper
+       extends Mapper<Object, Text, Text, IntWritable>{
+ 
+    private final static IntWritable one = new IntWritable(1);
+    private Text word = new Text();
+ 
+    public void map(Object key, Text value, Context context
+                    ) throws IOException, InterruptedException {
+      StringTokenizer itr = new StringTokenizer(value.toString());
+      while (itr.hasMoreTokens()) {
+        word.set(itr.nextToken());
+        context.write(word, one);
+      }
+    }
+  }
+ 
+  public static class IntSumReducer
+       extends Reducer<Text,IntWritable,Text,IntWritable> {
+    private IntWritable result = new IntWritable();
+ 
+    public void reduce(Text key, Iterable<IntWritable> values,
+                       Context context
+                       ) throws IOException, InterruptedException {
+      int sum = 0;
+      for (IntWritable val : values) {
+        sum += val.get();
+      }
+      result.set(sum);
+      context.write(key, result);
+    }
+  }
+ 
+  public static void main(String[] args) throws Exception {
+    Configuration conf = new Configuration();
+    Job job = Job.getInstance(conf, "word count");
+    job.setJarByClass(WordCount.class);
+    job.setMapperClass(TokenizerMapper.class);
+    job.setCombinerClass(IntSumReducer.class);
+    job.setReducerClass(IntSumReducer.class);
+    job.setOutputKeyClass(Text.class);
+    job.setOutputValueClass(IntWritable.class);
+    FileInputFormat.addInputPath(job, new Path(args[0]));
+    FileOutputFormat.setOutputPath(job, new Path(args[1]));
+    System.exit(job.waitForCompletion(true) ? 0 : 1);
+  }
+}
+ 
+
+Create classes folder 
+[cloudera@quickstart ~]$ mkdir -p classes 
+//copy java file to folder 
+[cloudera@quickstart ~]$ cp WordCount.java classes
+ 
+
+[cloudera@quickstart ~]$ cd classes/ 
+create class files 
+[cloudera@quickstart ~]$ javac -classpath `hadoop classpath` -d classes 
+WordCount.java 
+(Or) 
+[cloudera@quickstart ~]$ javac -classpath `hadoop classpath` -d classes  
+/home/cloudera/claases/WordCount.java 
+[cloudera@quickstart ~]$ cd classes 
+/Create jar file with class files 
+[cloudera@quickstart classes]$ jar -cvf wordcount.jar *.class 
+/ /input file is s.txt and output file is op1 
+//execute WordCount jar file and store o/p in op1 
+[cloudera@quickstart classes]$ hadoop jar wordcount.jar WordCount /s.txt /op1 
+Terminal 1 
+//After execution, check op1 file at hadoop 
+[cloudera@quickstart ~]$ hdfs dfs -ls / 
+Found 9 items 
+[cloudera@quickstart ~]$ hdfs dfs -cat /op1/part-r-00000 
+big 1 
+data 1 
+hadoop 2 
+Task: 4) Write a Map Reduce program that mines weather data. 
+T1 
+// Save java file 
+$nano WeatherMR.java 
+ 
+
+import java.io.IOException;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+ 
+public class WeatherMR {
+    // Mapper Class
+    public static class WeatherMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+        private Text year = new Text();
+        private IntWritable temperature = new IntWritable();
+        @Override
+        protected void map(LongWritable key, Text value, Context context)
+                throws IOException, InterruptedException {
+ 
+            String line = value.toString();
+            String[] fields = line.split(",");
+ 
+            if (fields.length >= 4) {
+                String date = fields[1]; // YYYYMMDD
+                String tempStr = fields[3]; // Max Temp
+ 
+                try {
+                    int temp = Integer.parseInt(tempStr);
+                    String yearStr = date.substring(0, 4);
+ 
+                    year.set(yearStr);
+                    temperature.set(temp);
+                    context.write(year, temperature);
+                } catch (NumberFormatException e) {
+                    // Ignore invalid lines
+                }
+            }
+        }
+    }
+ 
+    // Reducer Class
+    public static class WeatherReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
+        @Override
+        protected void reduce(Text key, Iterable<IntWritable> values, Context context)
+                throws IOException, InterruptedException {
+ 
+            int maxTemp = Integer.MIN_VALUE;
+            for (IntWritable val : values) {
+                maxTemp = Math.max(maxTemp, val.get());
+            }
+            context.write(key, new IntWritable(maxTemp));
+        }
+    }
+ 
+    // Driver Code
+    public static void main(String[] args) throws Exception {
+        if (args.length != 2) {
+            System.err.println("Usage: WeatherMR <input path> <output path>");
+            System.exit(-1);
+        }
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf, "Weather Max Temperature");
+        job.setJarByClass(WeatherMR.class);
+        job.setMapperClass(WeatherMapper.class);
+        job.setReducerClass(WeatherReducer.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
+}
+ 
+
+Compile 
+$ mkdir classes 
+$ javac -classpath `hadoop classpath` -d classes WeatherMR.java 
+// Create JAR file 
+$ jar -cvf WeatherMR.jar -C classes/ . 
+Prepare Input in HDFS 
+// weather.txt 
+StationID,Date,MinTemp,MaxTemp,Pressure,WindSpeed,Precipitation 
+USW00094889,20120101,23,56,1013,12,0 
+USW00094889,20120102,22,60,1011,14,1 
+USW00094889,20120103,20,54,1012,11,0 
+USW00094889,20130101,18,50,1015,11,0 
+USW00094889,20130102,20,48,1014,9,0 
+USW00094889,20130103,21,52,1013,10,1 
+USW00094889,20140101,25,58,1016,12,0 
+USW00094889,20140102,24,62,1015,13,2 
+USW00094889,20140103,22,57,1014,12,0 
+T2 
+$ hdfs dfs -mkdir /weatherinput 
+$ hdfs dfs -put weather.txt /weatherinput/ 
+/ Run Job 
+$ hadoop jar WeatherMR.jar WeatherMR /weatherinput /weatheroutput 
+View Output 
+$ hdfs dfs -ls / 
+Found 8 items 
+$ hdfs dfs -ls /weatheroutput 
+Found 2 items 
+$ hdfs dfs -cat /weatheroutput/part-r-00000 
+2012 60 
+2013 52 
+2014 62
+ 
+
+ 
+
+Task: 5)  Implement Matrix Multiplication with Hadoop Map Reduce. 
+T1 
+// Save java file 
+nano MatrixMultiplication.java
+ 
+
+import java.io.IOException;
+import java.util.*;
+ 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+ 
+public class MatrixMultiplication {
+ 
+    // Mapper Class
+    public static class MatrixMapper extends Mapper<LongWritable, Text, Text, Text> {
+        private int m = 2; // rows in Matrix A
+        private int n = 2; // columns in Matrix A / rows in Matrix B
+        private int p = 2; // columns in Matrix B
+ 
+        @Override
+        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+            // Each line format: MatrixName i j value
+            // Example: A 0 1 5  => A[0][1] = 5
+            String[] parts = value.toString().split("\\s+");
+            String matrixName = parts[0];
+            int i = Integer.parseInt(parts[1]);
+            int j = Integer.parseInt(parts[2]);
+            int val = Integer.parseInt(parts[3]);
+ 
+            if (matrixName.equals("A")) {
+                // Emit for all columns of B
+                for (int k = 0; k < p; k++) {
+                    context.write(new Text(i + "," + k), new Text("A," + j + "," + val));
+                }
+            } else if (matrixName.equals("B")) {
+                // Emit for all rows of A
+                for (int k = 0; k < m; k++) {
+                    context.write(new Text(k + "," + j), new Text("B," + i + "," + val));
+                }
+            }
+        }
+    }
+ 
+    // Reducer Class
+    public static class MatrixReducer extends Reducer<Text, Text, Text, Text> {
+        @Override
+        protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+            Map<Integer, Integer> aMap = new HashMap<>();
+            Map<Integer, Integer> bMap = new HashMap<>();
+ 
+            for (Text val : values) {
+                String[] parts = val.toString().split(",");
+                String matrixName = parts[0];
+                int index = Integer.parseInt(parts[1]);
+                int valueInt = Integer.parseInt(parts[2]);
+ 
+                if (matrixName.equals("A")) {
+                    aMap.put(index, valueInt);
+                } else if (matrixName.equals("B")) {
+                    bMap.put(index, valueInt);
+                }
+            }
+ 
+            int sum = 0;
+            for (int j : aMap.keySet()) {
+                if (bMap.containsKey(j)) {
+                    sum += aMap.get(j) * bMap.get(j);
+                }
+            }
+ 
+            context.write(key, new Text(String.valueOf(sum)));
+        }
+    }
+ 
+    // Main method
+    public static void main(String[] args) throws Exception {
+        if (args.length != 2) {
+            System.err.println("Usage: MatrixMultiplication <input path> <output path>");
+            System.exit(-1);
+        }
+ 
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf, "Matrix Multiplication");
+        job.setJarByClass(MatrixMultiplication.class);
+        job.setMapperClass(MatrixMapper.class);
+        job.setReducerClass(MatrixReducer.class);
+ 
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(Text.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(Text.class);
+ 
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+ 
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
+}
+ 
+
+Compile 
+$ mkdir -p classes 
+$ cp MatrixMultiplication.java classes 
+$ cd classes/ 
+$ ls 
+MatrixMultiplication.java 
+$ javac -classpath `hadoop classpath` -d classes MatrixMultiplication.java 
+// Create JAR file 
+$ jar -cvf MatrixMultiplication.jar -C classes/ . 
+T2 
+// Prepare Input in HDFS 
+nano input.txt 
+A 0 0 1 
+A 0 1 2 
+A 1 0 3 
+A 1 1 4 
+B 0 0 5 
+B 0 1 6 
+B 1 0 7 
+B 1 1 8 
+$ hdfs dfs -mkdir /input 
+$ hdfs dfs -put input.txt /input/ 
+$ Big Data Analytics Lab by Dr.V.Deepika - 2- 
+// Run Job 
+$ hadoop jar MatrixMultiplication.jar MatrixMultiplication /input /output 
+// View Output 
+$ hdfs dfs -ls / 
+$hdfs dfs -ls /output 
+Found 2 items 
+$ hdfs dfs -cat /output/part-r-00000 
+0,0 19 
+0,1 22 
+1,0 43 
+1,1 50
+ 
+
+ 
+
+Task: 6) Install and Run Hive, use Hive to create, alter, and drop databases, 
+tables, views, functions, and indexes 
+Installation of Hive in Ubuntu: 
+Pre-requisites 
+• Java installed (java -version) 
+• Hadoop installed and running (hadoop version) 
+Step 1: Download Apache Hive 
+$ cd /opt 
+$ sudo wget https://downloads.apache.org/hive/hive-3.1.3/apache-hive-3.1.3
+bin.tar.gz 
+$ sudo tar -xvzf apache-hive-3.1.3-bin.tar.gz 
+$ sudo mv apache-hive-3.1.3-bin hive 
+Step 2: Set Hive Environment Variables 
+Add the following lines to your . rc or .zshrc: 
+# Hive Environment Variables 
+$ export HIVE_HOME=/opt/hive 
+$ export PATH=$PATH:$HIVE_HOME/bin 
+$ export HADOOP_HOME=/usr/local/hadoop  
+# change if your Hadoop path is different 
+$ export PATH=$PATH:$HADOOP_HOME/bin 
+Then run: 
+$ source ~/. rc 
+Step 3: Configure Hive 
+Create the Hive warehouse directory in HDFS: 
+$ hdfs dfs -mkdir /user/hive/warehouse 
+$ hdfs dfs -chmod g+w /user/hive/warehouse 
+$ Set Hadoop temp dir if not done: 
+$ hdfs dfs -mkdir -p /tmp 
+$ hdfs dfs -chmod -R 1777 /tmp 
+Step 4: Configure hive-site.xml 
+Create the file: 
+$ cp $HIVE_HOME/conf/hive-default.xml.template  HIVE_HOME/conf/hive-site.xml 
+Edit it: 
+nano $HIVE_HOME/conf/hive-site.xml 
+Add the following basic configs:
+ 
+
+<configuration> 
+    <property> 
+        <name>javax.jdo.option.ConnectionURL</name> 
+        <value>jdbc:derby:;databaseName=metastore_db;create=true</value> 
+    </property> 
+    <property> 
+        <name>javax.jdo.option.ConnectionDriverName</name> 
+        <value>org.apache.derby.jdbc.EmbeddedDriver</value> 
+    </property> 
+    <property> 
+        <name>javax.jdo.option.ConnectionUserName</name> 
+        <value>user</value> 
+    </property> 
+    <property> 
+        <name>javax.jdo.option.ConnectionPassword</name> 
+        <value>password</value> 
+    </property> 
+    <property> 
+        <name>hive.metastore.warehouse.dir</name> 
+        <value>/user/hive/warehouse</value> 
+    </property> 
+</configuration>
+ 
+
+Step 5: Initialize the Hive Metastore (Derby) 
+schematool -initSchema -dbType derby 
+Step 6: Start Hive CLI 
+hive 
+You should now see the Hive prompt: 
+hive> 
+IF INSTALLED OR USING CLOUDERA DIRECTLY 
+Create, alter, and drop 
+• Databases 
+• Tables 
+• Views 
+• Functions 
+• Indexes 
+1. Start Hive  
+Open the terminal  
+hive 
+Wait for the Hive shell to load. You should see: 
+hive> 
+2. Database 
+Create Database 
+CREATE DATABASE mydb; 
+Use Database 
+USE mydb;
+ 
+
+Alter Database (rename or set properties) 
+ALTER DATABASE mydb SET DBPROPERTIES ('creator'='user', 'purpose'='bda lab'); 
+Drop Database 
+DROP DATABASE mydb; -- or, if it contains tables: 
+DROP DATABASE mydb CASCADE; 
+3. Table 
+List All Tables in Hive Database 
+USE mydb; -- (or default) 
+SHOW TABLES; 
+Create Table 
+CREATE TABLE students ( 
+id INT, 
+name STRING, 
+marks INT 
+); 
+Insert Data (for testing) 
+INSERT INTO students VALUES (1, 'John', 85), (2, 'Alice', 90); 
+Retrieve table data 
+Select * from students; 
+Alter Table (add column) 
+ALTER TABLE students ADD COLUMNS (grade STRING); 
+Rename Table 
+ALTER TABLE students RENAME TO students_updated; 
+Table description 
+desc students;
+ 
+
+Drop Table 
+DROP TABLE students_updated; 
+desc students; 
+show tables; 
+4. Views 
+Create View 
+CREATE VIEW top_students AS 
+SELECT * FROM students WHERE marks > 80; 
+Show tables; 
+Alter View (change definition) 
+ALTER VIEW top_students AS 
+SELECT name FROM students WHERE marks > 85; 
+Describe view 
+desc top_students; 
+Drop View 
+DROP VIEW top_students; 
+5. Functions 
+Sample Table 
+CREATE TABLE employees ( 
+emp_id INT, 
+f
+ irst_name STRING, 
+last_name STRING, 
+department STRING, 
+salary INT, 
+joining_date DATE, 
+bonus FLOAT 
+)
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+STORED AS TEXTFILE 
+TBLPROPERTIES ("skip.header.line.count"="1"); 
+LOAD DATA LOCAL INPATH '/home/cloudera/employees.csv' 
+INTO TABLE employees; 
+Categories & Examples 
+A. String Functions 
+SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM employees; 
+SELECT LENGTH(first_name) AS name_length FROM employees; 
+SELECT UPPER(department), LOWER(department) FROM employees; 
+SELECT SUBSTR(first_name, 1, 3) AS short_name FROM employees; 
+SELECT REVERSE(first_name) FROM employees; 
+B. Numeric Functions 
+SELECT ROUND(salary/12, 2) AS monthly_salary FROM employees; 
+SELECT FLOOR(bonus), CEIL(bonus) FROM employees; 
+SELECT ABS(salary - 50000) FROM employees; 
+SELECT EXP(2), LN(10), POWER(2, 3) FROM employees; 
+C. Date/Time Functions 
+SELECT YEAR(joining_date), MONTH(joining_date), DAY(joining_date) FROM employees; 
+SELECT CURRENT_DATE, CURRENT_TIMESTAMP FROM employees LIMIT 1; 
+SELECT DATEDIFF(CURRENT_DATE, joining_date) FROM employees; 
+SELECT DATE_ADD(joining_date, 30), DATE_SUB(joining_date, 30) FROM employees; 
+D. Conditional Functions 
+SELECT IF(salary > 50000, 'High', 'Normal') FROM employees; 
+SELECT CASE department WHEN 'IT' THEN 'Tech' ELSE 'Non-Tech' END FROM  
+employees; 
+SELECT NVL(department, 'Unknown') FROM employees; 
+COALESCE(salary, 0); 
+E. Collection Functions
+ 
+
+(If you had arrays, maps, structs) -- Example array table 
+SELECT SIZE(array('IT', 'Sales', 'HR')); 
+SELECT MAP_KEYS(map('dept', 'IT', 'role', 'Dev')); 
+SELECT MAP_VALUES(map('dept', 'IT', 'role', 'Dev')); 
+F. Aggregate Functions 
+SELECT COUNT(*), MAX(salary), MIN(salary), AVG(salary), SUM(salary) FROM employees; 
+SELECT department, COUNT(*) FROM employees GROUP BY department; 
+G. Type Conversion Functions 
+SELECT CAST(salary AS STRING) FROM employees; 
+SELECT CAST('2025-01-01' AS DATE); 
+See All Available Built-in Functions 
+SHOW FUNCTIONS; 
+Get Help on a Specific Function 
+DESCRIBE FUNCTION concat; 
+DESCRIBE FUNCTION EXTENDED concat; 
+6. Index 
+Create Index 
+CREATE INDEX idx_marks ON TABLE students (marks) AS 'COMPACT' WITH  DEFERRED REBUILD; 
+Drop Index 
+DROP INDEX idx_marks ON students; 
+7. Exit Hive 
+Exit;
+ 
+
+ 
+
+Hive Internal and External Tables 
+6.1). Internal table 
+Create employee Table
+ 
+
+T1 
+hive> CREATE TABLE emp_int (id INT, name STRING, dept STRING, salary FLOAT) 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+STORED AS TEXTFILE 
+TBLPROPERTIES ("skip.header.line.count"="1"); 
+Load data from HDFS 
+1st Put emp.csv file into HDFS Location 
+T2 
+[cloudera@quickstart ~]$ hdfs dfs -mkdir -p /user/hive/input 
+[cloudera@quickstart ~]$ hdfs dfs -put /home/cloudera/emp.csv /user/hive/input 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hive/input 
+Found 1 items 
+Load emp.csv data into Hive Internal Table 
+T1 
+hive> load data inpath '/user/hive/input/emp.csv' into table emp_int; 
+hive> select * from emp_int; 
+T2 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hive/warehouse/ 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hive/warehouse/emp_int 
+Found 1 items 
+Load data from local file system 
+T1 
+Load emp1.csv data into Hive Internal Table 
+hive> LOAD DATA LOCAL INPATH '/home/cloudera/emp1.csv' overwrite INTO TABLE  
+emp_int; 
+hive> select * from emp_int; 
+T2 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hive/warehouse/ 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hive/warehouse/emp_int
+ 
+
+Found 1 items 
+Export 
+1. Export emp_int table data from Hive to HDFS  
+hive>INSERT OVERWRITE DIRECTORY '/user/cloudera/export_emp' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+SELECT * FROM emp_int; 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/ 
+Found 1 items 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/export_emp 
+Found 1 items 
+2. Export emp_int table data from Hive to local file system 
+hive>INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/export_emp' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+SELECT * FROM emp_int; 
+Drop 
+hive> drop table emp_int; 
+6.2). External table 
+Create department Table 
+T1 
+hive> CREATE EXTERNAL TABLE dept_ext (id INT, dname STRING, location STRING) 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+LOCATION '/user/hive/external/dept' 
+TBLPROPERTIES ("skip.header.line.count"="1"); 
+Load data from HDFS
+ 
+
+T2 
+1st Put dept.csv file into HDFS Location 
+[cloudera@quickstart ~]$ hdfs dfs -mkdir -p /user/hive/input 
+[cloudera@quickstart ~]$ hdfs dfs -put /home/cloudera/dept.csv /user/hive/input/ 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hive/input/ 
+Found 1 items 
+[cloudera@quickstart ~]$ hdfs dfs -cat /user/hive/input/dept.csv 
+Load dept.csv data into Hive external table 
+T1 
+hive> LOAD DATA INPATH '/user/hive/input/dept.csv' INTO TABLE dept_ext; 
+hive> select * from dept_ext; 
+T2 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hive/external/dept 
+Load data from local file system 
+Load dept1.csv data into Hive external table 
+T1 
+LOAD DATA LOCAL INPATH '/home/cloudera/dept1.csv' overwrite INTO TABLE dept_ext; 
+hive> select * from dept_ext; 
+T2 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hive/external/dept 
+Found 1 items 
+Export 
+1. Export dept_ext table data from Hive to HDFS  
+hive>INSERT OVERWRITE DIRECTORY '/user/cloudera/export_dept' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+SELECT * FROM dept_ext; 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/
+ 
+
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/export_dept 
+2. Export dept_ext table data from Hive to local file system 
+hive>INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/export_dept' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+SELECT * FROM dept_ext; 
+Drop 
+hive> drop table dept_ext; 
+hive> select * from dept_ext; 
+hive> desc dept_ext;
+ 
+
+ 
+
+ 
+
+Task:7) Write a JDBC Program to create a HIVE database EMPLOYEE 
+table with the attributes empname, salary, age, joining date, address. 
+T1 
+Start Hive metastore (needed by HiveServer2) 
+[cloudera@quickstart ~]$ nohup hive --service metastore > 
+/tmp/metastore.out 2>&1 & 
+Start HiveServer2 
+[cloudera@quickstart ~]$ nohup hive --service hiveserver2 > 
+/tmp/hiveserver2.out 2>&1 & 
+Verify HiveServer2 is running on port 10000 
+[cloudera@quickstart ~]$ netstat -tnlp | grep -E "9083|10000" 
+[cloudera@quickstart ~]$ jps | grep -E "RunJar|Hive" 
+Connect using Beeline: 
+[cloudera@quickstart ~]$ beeline -u jdbc:hive2://localhost:10000 -n 
+cloudera 
+0: jdbc:hive2://localhost:10000> show databases;  
+T2 
+Locate the Hive JDBC JAR
+ 
+
+[cloudera@quickstart ~]$ ls /usr/lib/hive/jdbc/hive-jdbc-*-standalone.jar 
+if you get this error 
+ls: cannot access /usr/lib/hive/jdbc/hive-jdbc-*-standalone.jar: No 
+such file or directory  
+then try 
+[cloudera@quickstart ~]$ ls /usr/lib/hive/lib/hive-jdbc-*-standalone.jar 
+ 
+[cloudera@quickstart ~]$ export HIVE_JDBC_STANDALONE=$(ls /usr/lib/hive/lib/hive-jdbc- 
+*-standalone.jar | head -n1) 
+[cloudera@quickstart ~]$ echo $HIVE_JDBC_STANDALONE 
+[cloudera@quickstart ~]$ nano HiveJDBCExample.java 
+ 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.SQLException;
+ 
+public class HiveJDBCExample {
+    private static final String DRIVER = "org.apache.hive.jdbc.HiveDriver";
+    private static final String URL    = "jdbc:hive2://localhost:10000/default";
+    private static final String USER   = "cloudera"; // adjust if needed
+    private static final String PASS   = "";         // blank is fine on QuickStart
+ 
+    public static void main(String[] args) {
+        try (Connection con = connect(); Statement stmt = con.createStatement()) {
+ 
+            // Create and use a database
+            stmt.execute("CREATE DATABASE IF NOT EXISTS employee_db");
+            stmt.execute("USE employee_db");
+ 
+            // Drop + create table
+            stmt.execute("DROP TABLE IF EXISTS employee");
+            stmt.execute(
+                "CREATE TABLE employee (" +
+                "  empname       STRING, " +
+                "  salary        DOUBLE, " +   // use DOUBLE for money-like numeric
+                "  age           INT, " +
+                "  joining_date  DATE, " +
+                "  address       STRING" +
+                ") " +
+                "ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' " +
+                "STORED AS TEXTFILE"
+            );
+ 
+            System.out.println("? Created database employee_db and table employee.");
+        } catch (SQLException e) {
+            System.err.println("SQL error: " + e.getMessage());
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.err.println("Driver not found: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+ 
+    private static Connection connect() throws SQLException, ClassNotFoundException {
+        Class.forName(DRIVER);
+        // If your cluster requires auth, change USER/PASS or add URL params.
+        return DriverManager.getConnection(URL, USER, PASS);
+    }
+}
+ 
+
+Compile the Program 
+[cloudera@quickstart ~]$ javac -cp .:$HIVE_JDBC_STANDALONE HiveJDBCExample.java 
+Output: 
+//Verify in Hive 
+T1 
+0: jdbc:hive2://localhost:10000> show databases; 
+0: jdbc:hive2://localhost:10000> use employee_db; 
+0: jdbc:hive2://localhost:10000> show tables; 
+0: jdbc:hive2://localhost:10000> desc employee;
+ 
+
+ 
+
+ 
+
+ 
+
+Task: 8) . Install and Run Pig, write Pig Latin scripts to sort, group, join, 
+project, and filter your data. 
+For Ubuntu: 
+Install Pig on Hadoop (Linux Environment) 
+Step 1: Download Pig 
+Go to Apache Pig downloads or use wget: 
+cd /usr/local 
+$ sudo wget https://archive.apache.org/dist/pig/pig-0.17.0/pig-0.17.0.tar.gz 
+(Pig 0.17.0 is the latest stable version) 
+Step 2: Extract Pig 
+$ sudo tar -xvzf pig-0.17.0.tar.gz 
+$ sudo mv pig-0.17.0 pig 
+Now Pig is in /usr/local/pig. 
+Step 3: Configure Environment Variables 
+Edit .bashrc or .profile: 
+$ nano ~/.bashrc 
+Add: 
+export PIG_HOME=/usr/local/pig 
+export PATH=$PATH:$PIG_HOME/bin 
+export PIG_CLASSPATH=$HADOOP_HOME/conf # Hadoop configuration 
+f
+ iles 
+Apply changes: 
+$ source ~/.bashrc 
+Step 4: Verify Installation
+ 
+
+$ pig -version 
+You should see something like: 
+Apache Pig version 0.17.0 
+compiled Jul 14 2025, 19:05:05 
+Step 5: Run Pig 
+Pig can run in two modes: 
+1. Local Mode (No Hadoop) 
+2. pig -x local 
+Runs using local filesystem. 
+3. MapReduce Mode (on Hadoop cluster) 
+4. pig -x mapreduce 
+Runs Pig jobs as MapReduce on Hadoop. 
+If Hadoop is running (start-dfs.sh + start-yarn.sh), you can use 
+MapReduce mode. 
+Step 6: Test with a Simple Pig Script 
+Create a test file data.txt: 
+1,John,45000 
+2,Mary,55000 
+3,Sam,60000 
+Upload to HDFS: 
+$ hdfs dfs -mkdir /user/hduser/pigdata 
+$ hdfs dfs -put data.txt /user/hduser/pigdata/ 
+Run Pig: 
+$ pig -x mapreduce 
+Pig Latin script: 
+$ emp = LOAD '/user/hduser/pigdata/data.txt' USING PigStorage(',') 
+ 
+
+AS (id:int, name:chararray, salary:int); 
+high = FILTER emp BY salary > 50000; 
+DUMP high; 
+Start Pig 
+IN CLOUDERA 
+Pig command starts the Pig shell (Grunt prompt)  
+[cloudera@quickstart ~]$ pig 
+grunt> 
+1. Load Data 
+Used to load data into a relation (table-like structure). 
+1st put emp.csv in HDFS then load data to emp table 
+T1 
+[cloudera@quickstart ~]$ hdfs dfs -put /home/cloudera/emp.csv /user/cloudera/ 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/ 
+Found 3 items -rw-r--r-- 1 cloudera cloudera 133 2025-09-01 02:28 /user/cloudera/emp.csv 
+T2 
+grunt> emp = LOAD '/user/cloudera/emp.csv' USING PigStorage(',') AS (id:int, name:chararray,  
+dept:chararray, salary:int); 
+2. View Data 
+grunt> DUMP emp; 
+(101,John,Sales,45000) 
+(102,Jane,IT,55000) 
+(103,Michael,HR,40000) 
+(104,Linda,Finance,60000) 
+(105,David,IT,52000) 
+3. Store Data 
+Write output back to HDFS:
+ 
+
+grunt> STORE emp INTO '/user/hduser/output' USING PigStorage(','); 
+Success! 
+T1 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hduser/ 
+Found 1 items 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/hduser/output 
+[cloudera@quickstart ~]$ hdfs dfs -cat /user/hduser/output/part-m-00000 
+,name,department, 
+101,John,Sales,45000 
+102,Jane,IT,55000 
+103,Michael,HR,40000 
+104,Linda,Finance,60000 
+105,David,IT,52000 
+4. Filter Data 
+grunt>high_salary = FILTER emp BY salary > 50000; 
+grunt>DUMP high_salary; 
+(102,Jane,IT,55000) 
+(104,Linda,Finance,60000) 
+(105,David,IT,52000) 
+5. Projection (Select Columns) 
+projected = FOREACH emp GENERATE name, salary; 
+DUMP projected; 
+(John,45000) 
+(Jane,55000) 
+(Michael,40000) 
+(Linda,60000) 
+(David,52000) 
+6. Sorting 
+sorted_emp = ORDER emp BY salary DESC; 
+DUMP sorted_emp;
+ 
+
+(104,Linda,Finance,60000) 
+(102,Jane,IT,55000) 
+(105,David,IT,52000) 
+(101,John,Sales,45000) 
+(103,Michael,HR,40000) 
+7. Grouping 
+grouped = GROUP emp BY dept; 
+DUMP grouped; 
+(Finance,{(104,Linda,Finance,60000)}) 
+(HR,{(103,Michael,HR,40000)}) 
+(IT,{(102,Jane,IT,55000),(105,David,IT,52000)}) 
+(Sales,{(101,John,Sales,45000)}) 
+8. Aggregation 
+avg_salary = FOREACH grouped GENERATE group AS dept, AVG(emp.salary) AS avg_sal; 
+DUMP avg_salary; 
+(Finance,60000.0) 
+(HR,40000.0) 
+(IT,53500.0) 
+(Sales,45000.0) 
+9. Join 
+dept.csv 
+Sales,Sales Department 
+IT,Information Technology 
+HR,Human Resources 
+Finance,Finance Department 
+1st put dept.csv in HDFS then load data to emp table 
+T1 
+[cloudera@quickstart ~]$ hdfs dfs -put /home/cloudera/dept.csv /user/cloudera/ 
+[cloudera@quickstart ~]$ hdfs dfs -ls /user/cloudera/ 
+T2
+ 
+
+dept = LOAD 'dept.csv' USING PigStorage(',') AS (deptcode:chararray, 
+deptname:chararray); 
+DUMP dept; 
+Sales,Sales Department 
+IT,Information Technology 
+HR,Human Resources 
+Finance,Finance Department 
+joined = JOIN emp BY dept, dept BY deptcode; 
+DUMP joined; 
+(101,John,Sales,45000,Sales,Sales Department) 
+(102,Jane,IT,55000,IT,Information Technology) 
+(103,Michael,HR,40000,HR,Human Resources) 
+(104,Linda,Finance,60000,Finance,Finance Department) 
+(105,David,IT,52000,IT,Information Technology)
+ 
+
+ 
+
+ 
+
+Task: 9) Write a JDBC program to perform join operations on EMPLOYEE 
+and SALARY table using PIG operators. 
+Create 2 files employee and salary 
+employee.txt 
+1,John,10 
+2,Alice,20 
+3,Bob,10 
+4,Eve,30 
+salary.txt 
+1,50000 
+2,60000 
+3,55000 
+5,70000
+ 
+
+Executing Java program using PigServer in local mode 
+PigJoinFromJava.java
+ 
+
+import org.apache.pig.PigServer; 
+import org.apache.pig.data.Tuple; 
+import java.util.Iterator; 
+public class PigJoinFromJava { 
+public static void main(String[] args) throws Exception { 
+PigServer pig = new PigServer("local"); 
+String empPath = "employee.txt"; 
+String salPath = "salary.txt"; 
+pig.registerQuery("employees = LOAD '" + empPath + "' USING PigStorage(',') " + 
+"AS (empid:int, name:chararray, deptid:int);"); 
+pig.registerQuery("salary = LOAD '" + salPath + "' USING PigStorage(',') " + 
+"AS (empid:int, amount:double);"); 
+pig.registerQuery("emp_sal = JOIN employees BY empid, salary BY empid;"); 
+pig.registerQuery( 
+"result = FOREACH emp_sal GENERATE employees::empid AS empid, " + 
+"employees::name AS name, employees::deptid AS deptid, salary::amount AS amount;" 
+); 
+Iterator<Tuple> it = pig.openIterator("result"); 
+System.out.println("empid\tname\tdeptid\tamount"); 
+while (it.hasNext()) { 
+Tuple t = it.next(); 
+System.out.printf("%d\t%s\t%d\t%.2f\n", 
+(Integer) t.get(0), (String) t.get(1), 
+(Integer) t.get(2), (Double) t.get(3)); 
+} 
+pig.shutdown(); 
+} 
+}
+ 
+
+Collect Hadoop + Pig jars 
+build a combined classpath:   
+PIG_JARS=$(find /usr/lib/pig -name '*.jar' | tr '\n' ':') 
+total cmd  
+HADOOP_JARS=$(find /usr/lib/hadoop -name '*.jar' | tr '\n' ':') 
+HADOOP_COMMON_JARS=$(find /usr/lib/hadoop-hdfs -name '*.jar' | tr '\n' ':') 
+HADOOP_MAPRED_JARS=$(find /usr/lib/hadoop-mapreduce -name '*.jar' | tr '\n' ':') 
+HADOOP_YARN_JARS=$(find /usr/lib/hadoop-yarn -name '*.jar' | tr '\n' ':') 
+CP="$PIG_JARS:$HADOOP_JARS:$HADOOP_COMMON_JARS:$HADOOP_MAPRED_J 
+ARS:$HADOOP_YARN_JARS:." 
+Compile 
+javac -cp "$CP" PigJoinFromJava.java 
+Run 
+java -cp "$CP" PigJoinFromJava 
+Output: 
+empid name deptid amount 
+1 John 10 50000.00 
+2 Alice 20 60000.00 
+3 Bob 10 55000.00
+ 
+
+ 
+
+ 
+
+ 
+
+Task: 10) Illustrate the PIG string functions and date and time functions with 
+student database. 
+student.csv 
+1,John Doe,1999-05-14,CS 
+2, Jane Smith ,2000-11-22,IT 
+3,Rahul Kumar,1998-07-19,EE 
+4,Anita Sharma,2001-01-09,ME 
+5,mary-ann,1997-12-31,CS
+ 
+
+6,Bob O'Neil,1999-03-02,IT 
+Upload to HDFS 
+hdfs dfs -put student.csv /user/cloudera/student.csv 
+Load the data 
+grunt> student_data = LOAD '/user/cloudera/student.csv' USING PigStorage(',') 
+AS (id:int, name:chararray, dob:chararray, dept:chararray); 
+grunt> dump student_data; 
+Output: 
+(1,John Doe,1999-05-14,CS) 
+(2,Jane Smith,2000-11-22,IT) 
+(3,Rahul Kumar,1998-07-19,EE) 
+(4,Anita Sharma,2001-01-09,ME) 
+(5,mary-ann,1997-12-31,CS) 
+(6,Bob O'Neil,1999-03-02,IT) 
+String Functions: 
+Built-in string functions: UPPER, LOWER, TRIM, SUBSTRING, REPLACE, 
+INDEXOF, etc. 
+(a) UPPER() and LOWER() 
+grunt> upper_lower = FOREACH student_data GENERATE id, UPPER(name) AS 
+name_up, LOWER(dept) AS dept_low; 
+grunt> dump upper_lower; 
+Output: 
+(1,JOHN DOE,cs) 
+(2,JANE SMITH,it) 
+(3,RAHUL KUMAR,ee) 
+(4,ANITA SHARMA,me) 
+(5,MARY-ANN,cs)
+ 
+
+(6,BOB O'NEIL,it) 
+(b) TRIM(): It removes leading/trailing spaces. 
+grunt> trimmed = FOREACH student_data GENERATE id, TRIM(name) AS 
+clean_name; 
+grunt> DUMP trimmed; 
+Output: 
+(1,John Doe) 
+(2,Jane Smith) 
+(3,Rahul Kumar) 
+(4,Anita Sharma) 
+(5,mary-ann) 
+(6,Bob O'Neil) 
+(c) SUBSTRING(string, start, end): It returns characters starting at index 
+start (0-based) up to index end-1. Use TRIM() first if input has leading 
+spaces. 
+grunt>first4 = FOREACH student_data GENERATE id, SUBSTRING(TRIM(name), 
+0, 4) AS first4; 
+grunt>DUMP first4; 
+Output: 
+(1,John) 
+(2,Jane) 
+(3,Rahu) 
+(4,Anit) 
+(5,mary) 
+(6,Bob ) 
+(d) REPLACE(string, 'old','new'): It replaces occurrences of a substring.
+ 
+
+grunt>replaced = FOREACH student_data GENERATE id, 
+REPLACE(TRIM(name), ' ', '_') AS name_underscored; 
+grunt>DUMP replaced; 
+Output: 
+(1,John_Doe) 
+(2,Jane_Smith) 
+(3,Rahul_Kumar) 
+(4,Anita_Sharma) 
+(5,mary-ann) 
+(6,Bob_O'Neil) 
+(e) INDEXOF(string, substring, startIndex): It returns 0-based index of the 
+f
+ irst occurrence of the substring (search is case-sensitive). If not found 
+returns -1. 
+grunt>index_a = FOREACH student_data GENERATE id, TRIM(name) AS name, 
+INDEXOF(TRIM(name), 'a', 0) AS pos_a;  
+grunt>DUMP index_a; 
+Output: 
+(1,John Doe,-1) 
+(2,Jane Smith,1) 
+(3,Rahul Kumar,1) 
+(4,Anita Sharma,4) 
+(5,mary-ann,1) 
+(6,Bob O'Neil,-1) 
+Date & Time Functions: 
+ToDate(): 
+grunt>student_date = FOREACH student_data GENERATE id, name, 
+ToDate(dob, 'yyyy-MMdd') AS birth_date, dept;
+ 
+
+grunt>dump student_date; 
+Output: 
+(1,John Doe,1999-05-14T00:00:00.000-07:00,CS) 
+(2,Jane Smith,2000-11-22T00:00:00.000-08:00,IT) 
+(3,Rahul Kumar,1998-07-19T00:00:00.000-07:00,EE) 
+(4,Anita Sharma,2001-01-09T00:00:00.000-08:00,ME) 
+(5,mary-ann,1997-12-31T00:00:00.000-08:00,CS) 
+(6,Bob O'Neil,1999-03-02T00:00:00.000-08:00,IT) 
+Big Data Analytics Lab by Dr.V.Deepika - 4- 
+(a) GetYear, GetMonth, GetDay: It extracts numeric year / month / day from 
+the DateTime. 
+grunt>ymd = FOREACH student_date GENERATE id, name, GetYear(birth_date) 
+AS yyyy, GetMonth(birth_date) AS mm, GetDay(birth_date) AS dd; 
+grunt>DUMP ymd; 
+Output: 
+(1,John Doe,1999,5,14) 
+(2,Jane Smith,2000,11,22) 
+(3,Rahul Kumar,1998,7,19) 
+(4,Anita Sharma,2001,1,9) 
+(5,mary-ann,1997,12,31) 
+(6,Bob O'Neil,1999,3,2) 
+(b) AddDuration(datetime, 'P...') — add ISO-8601 durations: It adds a 
+duration (ISO-8601: P1Y = 1 year, P1M = 1 month, PT5H = 5 hours, etc.). 
+grunt>plus1 = FOREACH student_date GENERATE id, name, ToString(AddDuration(birth_date, 
+'P1Y'), 'yyyy-MM-dd') AS plus1yr; 
+grunt>DUMP plus1; 
+Output:
+ 
+
+(1,John Doe,2000-05-14) 
+(2,Jane Smith,2001-11-22) 
+(3,Rahul Kumar,1999-07-19) 
+(4,Anita Sharma,2002-01-09) 
+(5,mary-ann,1998-12-31) 
+(6,Bob O'Neil,2000-03-02) 
+(c) CurrentTime() and computing ages with YearsBetween() 
+grunt>ages = FOREACH student_date GENERATE id, name, 
+YearsBetween(birth_date, CurrentTime()) AS age; 
+grunt>DUMP ages; 
+Output: 
+(1,John Doe,-26) 
+(2,Jane Smith,-24) 
+(3,Rahul Kumar,-27) 
+(4,Anita Sharma,-24) 
+(5,mary-ann,-27) 
+(6,Bob O'Neil,-26) 
+Task: 6.3) HIVE UDF  
+Create a HIVE UDF that returns the string in reverse order. 
+Write the Java UDF 
+T1 
+gedit ReverseStringUDF.java 
+package com.example.hive.udf; 
+import org.apache.hadoop.hive.ql.exec.UDF; 
+public class ReverseStringUDF extends UDF {
+public String evaluate(String input) { 
+if (input == null) { 
+return null; 
+} 
+return new StringBuilder(input).reverse().toString(); 
+} 
+} 
+Compile and Package into JAR 
+$ mkdir -p ~/hiveudf/classes 
+$ javac -cp "/usr/lib/hive/lib/*" -d ~/hiveudf/classes ReverseStringUDF.java 
+$ jar -cvf ~/hiveudf/reverse-udf.jar -C ~/hiveudf/classes . 
+added manifest 
+adding: com/(in = 0) (out= 0)(stored 0%) 
+adding: com/example/(in = 0) (out= 0)(stored 0%) 
+adding: com/example/hive/(in = 0) (out= 0)(stored 0%) 
+adding: com/example/hive/udf/(in = 0) (out= 0)(stored 0%) 
+adding: com/example/hive/udf/ReverseStringUDF.class(in = 546) (out= 344)(deflated 
+36%) 
+Put the JAR in HDFS 
+$ hdfs dfs -mkdir -p /user/hive/udfs 
+$ hdfs dfs -put -f ~/hiveudf/reverse-udf.jar /user/hive/udfs/ 
+Register the UDF in Hive 
+T2 
+hive> ADD JAR hdfs:///user/hive/udfs/reverse-udf.jar; 
+converting to local hdfs:///user/hive/udfs/reverse-udf.jar 
+Big Data Analytics Lab by Dr.V.Deepika - 2- 
+Added [/tmp/837c701a-150d-4789-9dd0-a4de454d3004_resources/reverse-udf.jar] to 
+class path 
+Added resources: [hdfs:///user/hive/udfs/reverse-udf.jar]
+ 
+
+CREATE TEMPORARY FUNCTION reverse_str AS 
+'com.example.hive.udf.ReverseStringUDF'; 
+OK 
+Time taken: 0.572 seconds 
+Test the UDF 
+hive> SELECT reverse_str('Big Data Analytics') AS reversed; 
+OK 
+Use reverse_str() UDF in students table 
+Create student Table 
+hive> CREATE TABLE students ( 
+id INT, 
+name STRING, 
+marks INT 
+); 
+Insert Data 
+hive> INSERT INTO students VALUES (1, 'John', 85), (2, 'Alice', 90), (3,'Bob',90); 
+Retrieve table data 
+hive> Select * from students; 
+1 John 85 
+2 Alice 90 
+3 Bob 90 
+hive> SELECT id, name, reverse_str(name) AS reversed_name FROM students; 
+OK 
+1 John nhoJ 
+2 Alice ecilA 
+3 Bob boB 
+Time taken: 0.176 seconds, Fetched: 3 row(s)
+ 
+
+ 
+
+ 
+
+Task:11). Installing MongoDB. Illustrate the following – inserting, finding and querying 
+data, importing data. 
+#Download MongoDB 
+Go to the MongoDB Community Server download page 
+https://www.mongodb.com/try/download/community 
+Select the version 8.2.0 (current), OS / platform (Windows x64) and the package type 
+(msi). 
+Click on Download. 
+Install MongoDB 
+#Download and Install mongo shell from https://www.mongodb.com/try/download/shell 
+Click on Next and Install. 
+Click on Finish. 
+Install Database Tools separately (if missing) 
+If mongoimport.exe is not in bin folder, download MongoDB Database Tools: 
+https://www.mongodb.com/try/download/database-tools 
+Set the PATH variable 
+Identify MongoDB bin folder. By default, MongoDB installs to: 
+C:\Program Files\MongoDB\Server\8.2\bin 
+This is the folder containing the executables (mongod.exe, mongosh.exe, mongoimport.exe, 
+etc.). 
+Open Environment Variables Settings 
+1. Press Win + R, type: 
+2. sysdm.cpl 
+and hit Enter. 
+3. Go to the Advanced tab → click Environment Variables. 
+Edit the PATH variable 
+1. In the System variables section, find Path → select → click Edit. 
+2. Click New and add: 
+3. C:\Program Files\MongoDB\Server\8.2\bin
+ 
+
+4. Click OK to save → close all windows. 
+Verify PATH is set 
+1. Open a new Command Prompt (important — changes apply to new sessions only). 
+2. Type: 
+mongod --version 
+3. If it prints version info, the PATH is correctly set. 
+Add Tools folder to PATH (recommended) 
+1. Press Win + R → type: 
+sysdm.cpl 
+→ Enter. 
+2. Go to Advanced → Environment Variables. 
+3. Under System variables, find Path → Edit → New → paste: 
+C:\Program Files\MongoDB\Tools\100\bin 
+4. Save and restart Command Prompt. 
+5. Test: 
+mongoimport --version 
+C:\Users\hp>mongoimport --version 
+mongoimport version: 100.13.0 
+git version: 23008ff975be028544710a5da6ae749dc7e90ab7 
+Go version: go1.23.8 
+os: windows 
+arch: amd64 
+compiler: gc 
+Start the shell (connect locally) 
+Once mongod is running, open the Mongo shell: 
+> mongosh 
+By default mongosh connects to mongodb://localhost:27017. 
+Basic Data Operations (insert / find / query)
+ 
+
+1. Create / switch DB and a collection 
+test> use db1 
+switched to db db1 
+2. Insert a single document 
+db1> db.users.insertOne({ 
+name: "Alice", 
+age: 30, 
+email: "alice@example.com", 
+tags: ["admin","sales"] 
+}) 
+{ 
+acknowledged: true, 
+insertedId: ObjectId('68d43fa7fa0003f4bdcebea4') 
+} 
+3. Insert multiple documents 
+db1> db.users.insertMany([ 
+{ name: "Bob", age: 25, email:"bob@example.com", tags: ["support"] }, 
+{ name: "Carol", age: 35, email:"carol@example.com", tags: ["sales"] } 
+]) 
+{ 
+acknowledged: true, 
+insertedIds: { 
+'0': ObjectId('68d44070fa0003f4bdcebea5'), 
+'1': ObjectId('68d44070fa0003f4bdcebea6') 
+} 
+} 
+4. Find documents 
+f
+ ind() returns a cursor; mongosh prints the first batch automatically. For programmatic 
+access use cursor methods.
+ 
+
+Find all documents 
+db1> db.users.find()  
+// returns up to 20 docs in mongosh by default 
+[ 
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 30, 
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ] 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea5'), 
+name: 'Bob', 
+age: 25, 
+email: 'bob@example.com', 
+tags: [ 'support' ] 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea6'), 
+name: 'Carol', 
+age: 35, 
+email: 'carol@example.com', 
+tags: [ 'sales' ] 
+} 
+] 
+db1> db.users.find().pretty()  
+// nicely formatted 
+[
+ 
+
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 30, 
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ] 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea5'), 
+Big Data Analytics Lab by Dr.V.Deepika - 14- 
+name: 'Bob', 
+age: 25, 
+email: 'bob@example.com', 
+tags: [ 'support' ] 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea6'), 
+name: 'Carol', 
+age: 35, 
+email: 'carol@example.com', 
+tags: [ 'sales' ] 
+} 
+] 
+Find single document 
+db1> db.users.findOne({ name: "Alice" }) 
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 30,
+ 
+
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ] 
+} 
+5. Filter / projection / sort / limit examples 
+Filter: age greater than 26 
+db1> db.users.find({ age: { $gt: 26 } }) 
+[ 
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 30, 
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ] 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea6'), 
+name: 'Carol', 
+age: 35, 
+email: 'carol@example.com', 
+tags: [ 'sales' ] 
+} 
+] 
+Filter documents that have tag "admin" 
+db1> db.users.find({ tags: "admin" }) 
+[ 
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 30,
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ] 
+} 
+] 
+Projection: only show email, hide _id 
+db1> db.users.find({ age: { $gt: 26 } }, { email: 1, _id: 0 }) 
+[ { email: 'alice@example.com' }, { email: 'carol@example.com' } ] 
+Sort by age descending, limit 5 
+db1> db.users.find({}).sort({ age: -1 }).limit(5) 
+[ 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea6'), 
+name: 'Carol', 
+age: 35, 
+email: 'carol@example.com', 
+tags: [ 'sales' ] 
+}, 
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 30, 
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ] 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea5'), 
+name: 'Bob', 
+age: 25, 
+email: 'bob@example.com',
+ 
+
+tags: [ 'support' ] 
+} 
+] 
+6. Update documents 
+Update a single doc 
+db1> db.users.updateOne({ name: "Alice" }, { $set: { age: 31 } }) 
+{ 
+acknowledged: true, 
+insertedId: null, 
+matchedCount: 1, 
+modifiedCount: 1, 
+upsertedCount: 0 
+} 
+db1> db.users.findOne({ name: "Alice" }) 
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 31, 
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ] 
+} 
+Big Data Analytics Lab by Dr.V.Deepika - 17- 
+Update many documents 
+db1> db.users.updateMany({ tags: "sales" }, { $set: { status: "active" } }) 
+{ 
+acknowledged: true, 
+insertedId: null, 
+matchedCount: 2, 
+modifiedCount: 2,
+ 
+
+upsertedCount: 0 
+} 
+db1> db.users.find() 
+[ 
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 31, 
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ], 
+status: 'active' 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea5'), 
+name: 'Bob', 
+age: 25, 
+email: 'bob@example.com', 
+tags: [ 'support' ] 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea6'), 
+name: 'Carol', 
+age: 35, 
+email: 'carol@example.com', 
+tags: [ 'sales' ], 
+status: 'active' 
+} 
+] 
+7. Delete documents
+ 
+
+deleteOne() removes first match; 
+deleteMany() removes all matches. Always be careful with empty filters ({}) — that will 
+delete everything. 
+db1> db.users.deleteOne({ name: "Bob" }) 
+{ acknowledged: true, deletedCount: 1 } 
+db1> db.users.deleteMany({ status: "inactive" }) 
+{ acknowledged: true, deletedCount: 0 } 
+db1> db.users.find() 
+[ 
+{ 
+_id: ObjectId('68d43fa7fa0003f4bdcebea4'), 
+name: 'Alice', 
+age: 31, 
+email: 'alice@example.com', 
+tags: [ 'admin', 'sales' ], 
+status: 'active' 
+}, 
+{ 
+_id: ObjectId('68d44070fa0003f4bdcebea6'), 
+name: 'Carol', 
+age: 35, 
+email: 'carol@example.com', 
+tags: [ 'sales' ], 
+status: 'active' 
+} 
+] 
+8. Importing data using mongoimport 
+mongoimport is a command-line tool (part of Database Tools) — run it from shell (not 
+inside mongosh).
+ 
+
+Example 1: import JSON array 
+Create users.json document in C:\data\ folder 
+[ 
+{ "name": "Bob", "age": 25, "email": "bob@example.com" }, 
+{ "name": "Alice", "age": 30, "email": "alice@example.com" }, 
+{ "name": "John", "age": 28, "email": "john@example.com" } 
+] 
+Import command: 
+C:\Users\hp> "C:\Program Files\MongoDB\Tools\100\bin\mongoimport.exe" --db db1 -- 
+collection users --file "C:\data\users.json" --jsonArray 
+2025-09-25T01:52:08.102+0530 connected to: mongodb://localhost/ 
+2025-09-25T01:52:08.106+0530 3 document(s) imported successfully. 0 document(s) failed 
+to import. 
+Verify after import In mongosh: 
+test> use db1 
+switched to db db1 
+db1> db.users.countDocuments() 
+3 
+db1> db.users.find().limit(5).pretty() 
+[ 
+{ 
+_id: ObjectId('68d452f08fe17e7b99bfe2ed'), 
+name: 'John', 
+age: 28, 
+email: 'john@example.com' 
+}, 
+{ 
+_id: ObjectId('68d452f08fe17e7b99bfe2ee'), 
+name: 'Alice',
+ 
+
+age: 30, 
+email: 'alice@example.com' 
+}, 
+{ 
+_id: ObjectId('68d452f08fe17e7b99bfe2ef'), 
+name: 'Bob', 
+age: 25, 
+email: 'bob@example.com' 
+} 
+] 
+Example 2: import CSV 
+Create users1.csv document in C:\data\ folder. 
+name,age,email 
+Alice,30,alice@example.com 
+Bob,25,bob@example.com 
+Import command: 
+C:\Users\hp>"C:\Program Files\MongoDB\Tools\100\bin\mongoimport.exe" --db db1 -- 
+collection users1 --type csv --headerline --file "C:\data\users1.csv" 
+2025-09-25T02:05:15.504+0530 connected to: mongodb://localhost/ 
+2025-09-25T02:05:15.524+0530 2 document(s) imported successfully. 0 document(s) failed 
+to import. Verify after import 
+In mongosh: 
+test> use db1 
+switched to db db1 
+db1> db.users1.countDocuments() 
+2 
+db1> db.users1.find().limit(5).pretty() 
+[ 
+{
+ 
+
+_id: ObjectId('68d4560352db82ac983cd61f'), 
+name: 'Alice', 
+age: 30, 
+email: 'alice@example.com' 
+Big Data Analytics Lab by Dr.V.Deepika - 21- 
+}, 
+{ 
+_id: ObjectId('68d4560352db82ac983cd620'), 
+name: 'Bob', 
+age: 25, 
+email: 'bob@example.com' 
+} 
+] 
+Import via GUI (MongoDB Compass) 
+In MongoDB Compass, we can import JSON/CSV files via its Import dialog. 
+Open MongoDB Compass 
+1. Launch MongoDB Compass. 
+2. Connect to your MongoDB server: 
+o Hostname: localhost 
+o Port: 27017 
+o Click Connect. 
+Select or Create Database 
+1. In Compass, you’ll see the list of databases. 
+2. To use an existing database, click it (e.g., db1). 
+3. To create a new database: 
+o Click “Create Database”. 
+o Enter: 
+▪ Database Name: db1
+ 
+
+▪ Collection Name: users 
+o Click Create Database. 
+Import Data into a Collection 
+1. Click the collection name (e.g., users) in the left panel. 
+2. Click “Add Data” → “Import File”. 
+3. In the dialog: 
+o Select File: Browse and choose your file (users.json or users.csv). 
+o File Type: JSON or CSV (choose based on your file). 
+o JSON Array: Check this if your JSON file has [ ... ] at the top level. 
+o CSV Options: If CSV, you can choose Header Line or map columns manually. 
+4. Click Import. 
+Verify Imported Data 
+After import: 
+1. The collection will display all documents in a table view. 
+2. You can click “Documents” tab to see each document. 
+3. You can also run queries in the Filter bar: 
+4. { age: { $gt: 25 } } 
+→ shows all users with age > 25. 
+Example Scenario 
+• File: users.json 
+[ 
+{ "name": "Bob", "age": 25, "email": "bob@example.com" }, 
+{ "name": "Alice", "age": 30, "email": "alice@example.com" }, 
+{ "name": "John", "age": 28, "email": "john@example.com" } 
+] 
+• Import into db1.users using JSON Array option checked. 
+• After import, in Compass, Documents tab shows all 3 users.
+    </p>
+</body>
+</html>
